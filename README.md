@@ -31,5 +31,38 @@ use queue method to realize stack:
                     return len(self.q) == 0
                     # if the length is 0, return True
 
+2）用空集来写：
+记得拿空桶子来装 —— lastValue，这样，后来改变list本身也不受影响
+
+                        class MyStack:
+
+                            def __init__(self):
+                                self.stack = []
+
+                            def push(self, x: int) -> None:
+                                self.stack.append(x)
+
+                            def pop(self) -> int:
+                                lastIndex = len(self.stack) - 1 
+                                lastValue = self.stack[-1]
+                                newStack = []
+                                for i in range(len(self.stack)-1):
+                                    newStack.append(self.stack[i])
+                                    print(lastValue)
+
+                                self.stack = newStack
+                                return lastValue
+
+                            def top(self) -> int:
+                                return self.stack[-1]
+
+                            def empty(self) -> bool:
+                                return self.stack == []
 
 
+                        # Your MyStack object will be instantiated and called as such:
+                        # obj = MyStack()
+                        # obj.push(x)
+                        # param_2 = obj.pop()
+                        # param_3 = obj.top()
+                        # param_4 = obj.empty()
